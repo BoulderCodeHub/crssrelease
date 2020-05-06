@@ -33,36 +33,9 @@ combine_rdfs <- function(rdfs, scenarios, path)
   )
 }
 
-# Functions to work with Jon Rocha's rdf combiner tool
-# As of 12-May-2016, the tool cannot read folder names with commas, hence the
-# change folder names functions
-
 library(stringr)
 library(data.table)
 library(assertthat)
-
-#' Change folder names to have no commas
-#'
-#' @param fNames A vector of foldernames that will be renamed.
-#' @param fPath The path to the folders if not in the working directory.
-#' @param repWith What to replace the commas with. Defaults to '-'
-#'
-#' @return An Nx2 matrix. First column contains the orginal folder names, and
-#'   the second column contains the new column names
-#' @noRd
-
-fRename_noComma <- function(fNames, fPath = '', repWith = '-')
-{
-  newNames <- stringr::str_replace_all(fNames, ',', repWith)
-  old <- file.path(fPath,fNames)
-  nwNames <- file.path(fPath,newNames)
-  file.rename(old, nwNames)
-  return(matrix(
-    cbind(old, nwNames),
-    ncol = 2,
-    dimnames = list(NULL, c('Old Names','New Names'))
-  ))
-}
 
 #' Create the batch text file used by the Combiner Executable
 #'
