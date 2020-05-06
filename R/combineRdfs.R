@@ -1,26 +1,108 @@
-# script to create combined rdf files for a set of scenarios
-library(RWDataPlyr)
-source("code/combineRdfHelpers.R")
+#' Combine rdf files for a set of scenarios
+#'
+#' `combine_rdfs()` creates one rdf file containing data for that rdf file from
+#' multiple scenarios.
+#'
+#' @param rdfs A vector of rdf(s) to combine. There will be one rdf file
+#'   created for each provided rdf file.
+#'
+#' @param scenarios A vector of scenarios. The specified `rdf` will be combined
+#'   from all `scenarios`.
+#'
+#' @examples
+#' \dontrun{
+#' scens <- "Apr2020_2021,DNF,2007Dems,IG_DCP,MTOM_Most
+#' rdfs <- paste0(c('KeySlots','Flags','SystemConditions','OWDAnn','Res','xtraRes',
+#'                  "CRSPPowerData", "LBEnergy", "LBDCP", "UBDO"),'.rdf')
+#' scen_path <- 'M:/Shared/CRSS/2020/Scenario
+#' combine_rdfs(rdfs, scens, scen_path)
+#' }
 
-# ----- USER INPUT -------
-scens <- rw_scen_gen_names(
-  "Feb2020_2021,ISM1988_2018,2007Dems,IG_DCP",
-  paste0("Trace", 4:38)
-)
-rdfs <- paste0(c('KeySlots','Flags','SystemConditions','OWDAnn','Res','xtraRes', 
-                 "CRSPPowerData", "LBEnergy", "LBDCP", "UBDO"),'.rdf')
+combine_rdfs <- function(rdfs, scenarios, path)
+{
+  # path to the RiverWareBatchRdfCombiner.exe
+  batchPath <- system.file("bin", package = "crssrelease")
 
-sPath <- 'M:/Shared/CRSS/2020/Scenario/'
+  # call the combiner for all rdfs
+  # callCombinerByRdf(rdf, fNames, batchDir)
+  lapply(
+    as.list(rdfs),
+    callCombinerByRdf,
+    fNames = file.path(path, scenarios),
+    batchDir = batchPath
+  )
+}
 
-# path to the RiverWareBatchRdfCombiner.exe
-batchPath <- "M:/Shared/CRSS/2020/results" 
-# ----- END USER INPUT -------
+# Functions to work with Jon Rocha's rdf combiner tool
+# As of 12-May-2016, the tool cannot read folder names with commas, hence the
+# change folder names functions
 
-# call the combiner for all rdfs
-# callCombinerByRdf(rdf, fNames, batchDir)
-lapply(
-  as.list(rdfs), 
-  callCombinerByRdf, 
-  fNames = file.path(sPath, scens), 
-  batchDir = batchPath
-)
+library(stringr)
+library(data.table)
+library(assertthat)
+
+#' Change folder names to have no commas
+#'
+#' @param fNames A vector of foldernames that will be renamed.
+#' @param fPath The path to the folders if not in the working directory.
+#' @param repWith What to replace the commas with. Defaults to '-'
+#'
+#' @return An Nx2 matrix. First column contains the orginal folder names, and
+#'   the second column contains the new column names
+#' @noRd
+
+fRename_noComma <- function(fNames, fPath = '', repWith = '-')
+{
+  newNames <- stringr::str_replace_all(fNames, ',', repWith)
+  old <- file.path(fPath,fNames)
+  nwNames <- file.path(fPath,newNames)
+  file.rename(old, nwNames)
+  return(matrix(
+    cbind(old, nwNames),
+    ncol = 2,
+    dimnames = list(NULL, c('Old Names','New Names'))
+  ))
+}
+
+#' Create the batch text file used by the Combiner Executable
+#'
+#' @param fNames The folder names (full path)
+#' @param rdf The rdf file to combine together
+#' @param oFile A full path to the new combined rdf file. Should end in .rdf
+#' @param batchDir The folder to create the batch text file in
+#' @noRd
+createCombinerBatchTxt <- function(fNames, rdf, oFile, batchDir)
+{
+  combineFiles <- paste0(fNames,'; ',rdf)
+  combineFiles <- matrix(c(paste0('$',oFile), combineFiles), ncol = 1)
+  data.table::fwrite(as.data.frame(combineFiles), file.path(batchDir,'RdfCombinerBatchControl.txt'),
+                     quote = F, col.names = F, row.names = F)
+}
+
+#' Create the batch text file, and then call the Rdf Combiner
+#'
+#' @param rdf The rdf file to combine together
+#' @param fNames The folder names (full path)
+#' @param batchDir The folder to create the batch text file in (also the
+#'   directory to create the rdf in)
+#'
+#' @return TRUE if successful
+#' @noRd
+callCombinerByRdf <- function(rdf, fNames, batchDir)
+{
+  assert_that(
+    all(file.exists(fNames)),
+    msg = "At least one of the fNames does not exist."
+  )
+
+  oFile <- file.path(batchDir,rdf)
+  message(paste('Creating batch text file for',rdf,'...'))
+  createCombinerBatchTxt(fNames = fNames, rdf = rdf, oFile = oFile, batchDir = batchDir)
+  # the executable has to be called from the directory the batch file is in
+  owd <- getwd()
+  setwd(batchDir)
+  message(paste('Starting RDF Combiner for',rdf,'...'))
+  system2(file.path(batchDir,'RiverWareBatchRdfCombiner'))
+  setwd(owd)
+  return(TRUE)
+}
