@@ -1,11 +1,18 @@
 Package: crssrelease
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Tools to assiste with the CRSS releases process.
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Author@R: person("Alan", "Butler", ,"rabutler@usbr.gov", c("aut", "cre")) 
+Description: Provides R interface to other tools (rdf combiner, rdf to excel, 
+    zip) that are used to create the CRSS package that is released to 
+    Stakeholders.
+License: CC0
 Encoding: UTF-8
 LazyData: true
+Imports:
+    assertthat
+Roxygen: list(markdown = TRUE)
+Suggests:
+    RWDataPlyr,
+    testthat
+RoxygenNote: 7.1.0
