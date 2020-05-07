@@ -17,20 +17,64 @@ remotes::install_github("BoulderCodeHub/crssrelease")
 
 #### For runs with multiple initializations
 
-1. combine the rdf files together. See combineRdfs.R. You will have to update the user input variables and call that script. 
+1. combine the rdf files together. `combine_rdfs()`. 
 
-2. Create excel files from the rdfs. See rdf_to_excel.R. You will have to update the user input variables and call that script.
+2. Create excel files from the rdfs. See `rdf_to_excel()`.
 
-3. Rename the excel files so that the scenario name appears before the file name. See `rename_excel_file()` in rename_excel_file.R. 
+3. Rename the excel files so that the scenario name appears before the file name. See `rename_excel_files()`.
 
 #### For runs with only one set of initial conditions
 
-1. Create excel files using RiverSMART
+1. Create excel files using RiverSMART.
 
-2. Rename the excel files so that the scenario name appears before the file name. See `rename_excel_file()` in rename_excel_file.R. 
+2. Rename the excel files so that the scenario name appears before the file name. See `rename_excel_files()`.
+
+#### Example
+
+```{r}
+# two scenario groups
+apr_dnf <- RWDataPlyr::rw_scen_gen_names(
+  "Apr2020_2021,DNF,2007Dems,IG_DCP", 
+  sprintf("%02d", 4:38)
+)
+
+apr_st <- RWDataPlyr::rw_scen_gen_names(
+  "Apr2020_2021,ISM1988_2018,2007Dems,IG_DCP", 
+  sprintf("%02d", 4:38)
+)
+
+# combine the rdfs
+rdfs <- paste0(
+  c('KeySlots','Flags','CRSPPowerData', 'LBDCP', 'LBEnergy', 'OWDAnn', 'Res', 
+    'SystemConditions'),
+  '.rdf'
+)
+
+scen_path <- "M:/Shared/CRSS/2020/Scenario"
+dnf <- file.path(scen_path, "Apr2020_2021,DNF,2007Dems,IG_DCP")
+dir.create(dnf)
+st <- file.path(scen_path, "Apr2020_2021,ISM1988_2018,2007Dems,IG_DCP")
+dir.create(st)
+combine_rdfs(rdfs, apr_dnf, scen_path, dnf)
+combine_rdfs(rdfs, apr_dnf, scen_path, st)
+
+# create excel files from the combined rdfs
+rdf_to_excel(rdfs, dnf)
+rdf_to_excel(rdfs, st)
+
+# rename the excel files
+xlsx <- paste0(
+  c('KeySlots','Flags','CRSPPowerData', 'LBDCP', 'LBEnergy', 'OWDAnn', 'Res', 
+    'SystemConditions'),
+  '.xlsx'
+)
+rename_excel_files(xlsx, c(dnf, st))
+```
 
 ### CRSS Package
 
 1. Create the CRSS zip package - see `zip_crss_package()` in zip_crss_package.R. Note that it is likely easiest to create the zip package with some of the defaults, and then delete the files/folders that are not needed.
 
-2. Add in the modeling assumptions to the zip package. 
+2. Create a list of changes since the last release. `crss_changes_template()` will create a template for you that can then be knit to a pdf.
+
+3. Add in the modeling assumptions to the zip package. 
