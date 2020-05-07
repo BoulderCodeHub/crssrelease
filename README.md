@@ -1,5 +1,9 @@
 # crssrelease
 
+<!-- badges: start -->
+[![R build status](https://github.com/BoulderCodeHub/crssrelease/workflows/R-CMD-check/badge.svg)](https://github.com/BoulderCodeHub/crssrelease/actions) [![Codecov test coverage](https://codecov.io/gh/BoulderCodeHub/crssrelease/branch/master/graph/badge.svg)](https://codecov.io/gh/BoulderCodeHub/crssrelease?branch=master)
+  <!-- badges: end -->
+
 R interface to tools that help with the CRSS release process.
 
 ## Instalation
