@@ -7,7 +7,7 @@ p2 <- file.path(scen_path, test_scens[2])
 
 
 # teardown --------------------
-# TODO: in p1 and p2, delete all .xlsx and .log files
+# in p1 and p2, delete all .xlsx and .log files
 teardown({
   f1 <- list.files(p1)
   f2 <- list.files(p2)
@@ -43,4 +43,19 @@ test_that("rdf_to_excel() works.", {
       mustWork = FALSE
     )
   )
+})
+
+# rename_excel_files() -----------------------
+x1 <- c("KeySlots.xlsx", "SystemConditions.xlsx")
+x2 <- c("this.xlsx", "that.xlsx")
+test_that("rename_excel_files() works.", {
+  expect_is(x <- rename_excel_files(x1, p1), "matrix")
+  expect_equal(dim(x), c(2, 2))
+  expect_true(all(file.exists(x[,2])))
+  expect_true(all(file.exists(file.path(p1, paste0(test_scens[1], "-", x1)))))
+
+  expect_is(x <- rename_excel_files(x2, p2, c("added"), "_"), "matrix")
+  expect_equal(dim(x), c(2, 2))
+  expect_true(all(file.exists(x[,2])))
+  expect_true(all(file.exists(file.path(p2, paste0(c("added"), "_", x2)))))
 })

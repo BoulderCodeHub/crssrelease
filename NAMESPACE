@@ -2,4 +2,5 @@
 
 export(combine_rdfs)
 export(rdf_to_excel)
+export(rename_excel_files)
 importFrom(assertthat,assert_that)

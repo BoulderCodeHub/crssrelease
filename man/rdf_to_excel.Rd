@@ -23,7 +23,7 @@ Invisibly returns the absolute path to all created Excel files.
 }
 \description{
 \code{rdf_to_excel()} calls the CADSWES provided RdfToExcel tool for the specified
-\code{rdfs}. The RdfToExcelExecutable.exe should be abel to be found in the Path
+\code{rdfs}. The RdfToExcelExecutable.exe should be found when searching the Path
 environment variable, otherwise this function will error.
 }
 \examples{
