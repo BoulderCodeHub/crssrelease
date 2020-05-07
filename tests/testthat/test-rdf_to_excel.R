@@ -4,7 +4,7 @@ scen_path <- "../Scenario"
 rdfs <- c("KeySlots.rdf", "SystemConditions.rdf")
 p1 <- file.path(scen_path, test_scens[1])
 p2 <- file.path(scen_path, test_scens[2])
-
+skip_on_ci()
 
 # teardown --------------------
 # in p1 and p2, delete all .xlsx and .log files
@@ -20,6 +20,7 @@ teardown({
   file.remove(file.path(p2, f2[i1]))
   file.remove(file.path(p2, f2[i2]))
 })
+
 
 # rdf_to_excel() --------------
 test_that("rdf_to_excel() works.", {
