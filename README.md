@@ -1,12 +1,12 @@
 # crssrelease
 
-Tools to help with the CRSS release process.
+R interface to tools that help with the CRSS release process.
 
 ## Release Process
 
-## Create files to post
+### Create files to post
 
-### For runs with multiple initializations
+#### For runs with multiple initializations
 
 1. combine the rdf files together. See combineRdfs.R. You will have to update the user input variables and call that script. 
 
@@ -14,13 +14,13 @@ Tools to help with the CRSS release process.
 
 3. Rename the excel files so that the scenario name appears before the file name. See `rename_excel_file()` in rename_excel_file.R. 
 
-### For runs with only one set of initial conditions
+#### For runs with only one set of initial conditions
 
 1. Create excel files using RiverSMART
 
 2. Rename the excel files so that the scenario name appears before the file name. See `rename_excel_file()` in rename_excel_file.R. 
 
-## CRSS Package
+### CRSS Package
 
 1. Create the CRSS zip package - see `zip_crss_package()` in zip_crss_package.R. Note that it is likely easiest to create the zip package with some of the defaults, and then delete the files/folders that are not needed.
 
