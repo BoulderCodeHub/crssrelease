@@ -20,6 +20,7 @@ file in the same directory as ifolder, e.g., if ifolder is
 \item{zip_folders}{The folders to include in the zip.}
 }
 \description{
+\code{zip_crss_package()} creates a zip package that is used to distribute CRSS.
 By default, it includes all files in the top level folder, and the following
 folders: control, dmi, model, results, ruleset, sct, temp. The dmi folder is
 large, and all files are usually not necessary, so will prompt for user input

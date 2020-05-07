@@ -1,19 +1,16 @@
 Package: crssrelease
 Type: Package
 Title: Tools to assiste with the CRSS releases process.
-Version: 0.0.0
-Author@R: person("Alan", "Butler", ,"rabutler@usbr.gov", c("aut", "cre")) 
-Description: Provides R interface to other tools (rdf combiner, rdf to excel, 
-    zip) that are used to create the CRSS package that is released to 
-    Stakeholders.
+Version: 0.0.0-1
+Author@R: person("Alan", "Butler", ,"rabutler@usbr.gov", c("aut",
+        "cre"))
+Description: Provides R interface to other tools (rdf combiner, rdf to
+        excel, zip) that are used to create the CRSS package that is
+        released to Stakeholders.
 License: CC0
 Encoding: UTF-8
 LazyData: true
-Imports:
-    assertthat,
-    tools
+Imports: assertthat, tools
 Roxygen: list(markdown = TRUE)
-Suggests:
-    RWDataPlyr,
-    testthat
+Suggests: RWDataPlyr, testthat
 RoxygenNote: 7.1.0
