@@ -2,7 +2,16 @@
 
 R interface to tools that help with the CRSS release process.
 
-## Release Process
+## Instalation
+
+crssrelease is only available on GitHub:
+
+```{r}
+# install.packages("remotes")
+remotes::install_github("BoulderCodeHub/crssrelease")
+```
+
+## Release Process (Usage)
 
 ### Create files to post
 

@@ -1,0 +1,56 @@
+---
+title: "[Full month] [yyyy] CRSS Updates"
+header-includes:
+  - \usepackage[none]{hyphenat}
+output: 
+  pdf_document:
+      highlight: espresso
+      keep_tex: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+This document includes all of the changes made to CRSS between the "[Previous model]" and the "[current model]" packages. Files for the model and ruleset for these two packages are:
+
+<!-- update the RiverWare versions, model names, and ruleset names here. 
+Top row should be current model, bottom row should be previous model -->
+
+```{r modelVersions}
+df <- as.data.frame(cbind(
+    c("RW v7.5.2", "CRSS.V4.4.1.2021.Feb2020.mdl", "CRSS.Baseline.2027[IGDCP/NA].v4.4.0.rls"),
+    c("RW v7.5.2", "CRSS.V4.1.1.2020.Aug2019.mdl", "CRSS.Baseline.2027IGDCP.v4.2.0.rls")
+))
+colnames(df) <- c("February 2020", "August 2019 - December Update")
+rownames(df) <- c("RiverWare", "Model", "Ruleset")
+knitr::kable(df)
+```
+
+## Changes That Affect Results
+
+- List the model changes that affect reults here. 
+- Use backticks to identify `objects`, `object.slots[]`, and `functions()`
+- Note that you might need to use the "\\raggedright" command (just one backslash to actually use it) to start any of the bullets if they are extra long and include many code segments. 
+
+## Changes That Do Not Affect Results
+
+### Model and Global Functions
+
+
+### Ruleset
+
+In both the IG_DCP and NA rulesets:
+
+
+In only the IG_DCP ruleset: 
+
+
+
+In only the NA ruleset:
+
+
+### Other Files 
+
+DIT, RiverSMART study file, control files...
+
