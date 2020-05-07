@@ -13,30 +13,30 @@ ofolder <- "combine_rdfs"
 setup(dir.create(ofolder))
 teardown(unlink(ofolder, recursive = TRUE))
 
-skip_if_not(interactive(), {
-  # combine_rdfs ---------------------------
-  test_that("combine_rdfs() works", {
-    expect_type(
-      x <- combine_rdfs(rdfs, test_scens, scen_path, "combine_rdfs"),
-      "character"
-    )
-    exp_files <- normalizePath(file.path(ofolder, rdfs), mustWork = TRUE)
-    expect_true(all(x == exp_files))
-  })
-
-  # RWDataPlyr ------------------------------
-  test_that("manual combination matches exe.", {
-    r_comb <- read_rdf(file.path(ofolder, rdfs[1]))
-    r1 <- read_rdf(file.path(scen_path, test_scens[1], rdfs[1]))
-    r2 <- read_rdf(file.path(scen_path, test_scens[2], rdfs[1]))
-    for (slot in rdf_slot_names(r1)) {
-      s1 <- rdf_get_slot(r1, slot)
-      s2 <- rdf_get_slot(r2, slot)
-      s_comb <- rdf_get_slot(r_comb, slot)
-      expect_equivalent(s_comb, cbind(s1, s2))
-    }
-  })
-})
+# skip_if_not(interactive(), {
+#   # combine_rdfs ---------------------------
+#   test_that("combine_rdfs() works", {
+#     expect_type(
+#       x <- combine_rdfs(rdfs, test_scens, scen_path, "combine_rdfs"),
+#       "character"
+#     )
+#     exp_files <- normalizePath(file.path(ofolder, rdfs), mustWork = TRUE)
+#     expect_true(all(x == exp_files))
+#   })
+#
+#   # RWDataPlyr ------------------------------
+#   test_that("manual combination matches exe.", {
+#     r_comb <- read_rdf(file.path(ofolder, rdfs[1]))
+#     r1 <- read_rdf(file.path(scen_path, test_scens[1], rdfs[1]))
+#     r2 <- read_rdf(file.path(scen_path, test_scens[2], rdfs[1]))
+#     for (slot in rdf_slot_names(r1)) {
+#       s1 <- rdf_get_slot(r1, slot)
+#       s2 <- rdf_get_slot(r2, slot)
+#       s_comb <- rdf_get_slot(r_comb, slot)
+#       expect_equivalent(s_comb, cbind(s1, s2))
+#     }
+#   })
+# })
 
 
 # create_combiner_batch_txt ---------------------
