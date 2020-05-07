@@ -18,9 +18,9 @@
 #'
 #' @examples
 #' \dontrun{
-#' scens <- "Apr2020_2021,DNF,2007Dems,IG_DCP,MTOM_Most
+#' scens <- "Apr2020_2021,DNF,2007Dems,IG_DCP,MTOM_Most"
 #' rdfs <- paste0(c('KeySlots','Flags'),'.rdf')
-#' scen_path <- 'M:/Shared/CRSS/2020/Scenario
+#' scen_path <- 'M:/Shared/CRSS/2020/Scenario'
 #' x <- combine_rdfs(rdfs, scens, scen_path, "C:/test")
 #'
 #' # the following would be c(TRUE, TRUE)
