@@ -10,7 +10,8 @@ License: CC0
 Encoding: UTF-8
 LazyData: true
 Imports:
-    assertthat
+    assertthat,
+    tools
 Roxygen: list(markdown = TRUE)
 Suggests:
     RWDataPlyr,
