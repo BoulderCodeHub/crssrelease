@@ -1,16 +1,21 @@
 Package: crssrelease
 Type: Package
-Title: Tools to assiste with the CRSS releases process.
-Version: 0.0.0-4
-Author@R: person("Alan", "Butler", ,"rabutler@usbr.gov", c("aut",
+Title: Tools to assist with the CRSS release process
+Version: 0.0.0-5
+Authors@R: person("Alan", "Butler", ,"rabutler@usbr.gov", c("aut",
         "cre"))
 Description: Provides R interface to other tools (rdf combiner, rdf to
         excel, zip) that are used to create the CRSS package that is
         released to Stakeholders.
+URL: https://github.com/BoulderCodeHub/crssrelease
+BugReports: https://github.com/BoulderCodeHub/crssrelease/issues
 License: CC0
+Copyright: This software is in the public domain because it contains
+        materials that originally came from the U.S. Bureau of
+        Reclamation, an agency of the U.S. Department of Interior.
 Encoding: UTF-8
 LazyData: true
-Imports: assertthat, tools
+Imports: assertthat, tools, utils
 Roxygen: list(markdown = TRUE)
 Suggests: RWDataPlyr, testthat, covr
 RoxygenNote: 7.1.0

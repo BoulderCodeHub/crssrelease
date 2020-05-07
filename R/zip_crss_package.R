@@ -66,13 +66,13 @@ zip_crss_package <- function(ifolder, zip_name,
   }
 
   message("Zipping...")
-  zip(zip_name, all_files)
+  utils::zip(zip_name, all_files)
 }
 
 # gets the numbers from comma seperated list.
 parse_ui <- function(ui)
 {
-  as.numeric(stringr::str_split(ui, ",")[[1]])
+  as.numeric(strsplit(ui, ",")[[1]])
 }
 
 get_dmi_folders <- function(ui_vals, dmi_folders, base_folder)
