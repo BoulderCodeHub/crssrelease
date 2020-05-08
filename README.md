@@ -39,12 +39,12 @@ remotes::install_github("BoulderCodeHub/crssrelease")
 # two scenario groups
 apr_dnf <- RWDataPlyr::rw_scen_gen_names(
   "Apr2020_2021,DNF,2007Dems,IG_DCP", 
-  sprintf("%02d", 4:38)
+  paste0("Trace", sprintf("%02d", 4:38))
 )
 
 apr_st <- RWDataPlyr::rw_scen_gen_names(
   "Apr2020_2021,ISM1988_2018,2007Dems,IG_DCP", 
-  sprintf("%02d", 4:38)
+  paste0("Trace", sprintf("%02d", 4:38))
 )
 
 # combine the rdfs
