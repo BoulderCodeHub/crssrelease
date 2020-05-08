@@ -44,7 +44,7 @@ combine_rdfs <- function(rdfs, scenarios, scen_path, out_path)
   out_path <- normalizePath(out_path)
 
   # path to the RiverWareBatchRdfCombiner.exe
-  batch_path <- system.file("bin", package = "crssrelease")
+  batch_path <- system.file("exec", package = "crssrelease")
 
   # create area to work in tempdir
   temp_dir <- file.path(tempdir(TRUE), "crssrelease")
