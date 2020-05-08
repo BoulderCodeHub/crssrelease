@@ -82,3 +82,7 @@ rename_excel_files(xlsx, c(dnf, st))
 2. Create a list of changes since the last release. `crss_changes_template()` will create a template for you that can then be knit to a pdf.
 
 3. Add in the modeling assumptions to the zip package. 
+
+## Releases
+
+- v0.1.0 2020-05-08

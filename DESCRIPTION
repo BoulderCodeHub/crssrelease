@@ -1,7 +1,7 @@
 Package: crssrelease
 Type: Package
 Title: Tools to assist with the CRSS release process
-Version: 0.0.0-11
+Version: 0.1.0
 Authors@R: person("Alan", "Butler", ,"rabutler@usbr.gov", c("aut",
         "cre"))
 Description: Provides R interface to other tools (rdf combiner, rdf to
