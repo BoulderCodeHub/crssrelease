@@ -11,7 +11,7 @@
 #' @param insert_name By default (if this is `NULL`), the top level folder name
 #'   will be inserted into the current file name. If this parameter is
 #'   specified, it will be used instead of the top level folder. If it is not
-#'   `NULL`, it must be the same length as the number of files specified by
+#'   `NULL`, it must be the same length as the number of folders specified in
 #'   `ifolder`.
 #'
 #' @param sep The character used to seperate `insert_name` from the current file
@@ -40,7 +40,7 @@ rename_excel_files <- function(files, ifolder, insert_name = NULL, sep = "-")
     old_files <- file.path(ff, files)
 
     if (is.null(insert_name)) {
-      tmp_name <- basename(ifolder)
+      tmp_name <- basename(ff)
     } else {
       tmp_name <- insert_name[i]
     }
@@ -53,6 +53,8 @@ rename_excel_files <- function(files, ifolder, insert_name = NULL, sep = "-")
 
     ofiles <- rbind(ofiles, cbind(old_files, new_files))
   }
+
+  colnames(ofiles) <- c("old_file", "new_file")
 
   invisible(ofiles)
 }

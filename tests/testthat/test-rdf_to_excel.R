@@ -45,18 +45,3 @@ test_that("rdf_to_excel() works.", {
     )
   )
 })
-
-# rename_excel_files() -----------------------
-x1 <- c("KeySlots.xlsx", "SystemConditions.xlsx")
-x2 <- c("this.xlsx", "that.xlsx")
-test_that("rename_excel_files() works.", {
-  expect_is(x <- rename_excel_files(x1, p1), "matrix")
-  expect_equal(dim(x), c(2, 2))
-  expect_true(all(file.exists(x[,2])))
-  expect_true(all(file.exists(file.path(p1, paste0(test_scens[1], "-", x1)))))
-
-  expect_is(x <- rename_excel_files(x2, p2, c("added"), "_"), "matrix")
-  expect_equal(dim(x), c(2, 2))
-  expect_true(all(file.exists(x[,2])))
-  expect_true(all(file.exists(file.path(p2, paste0(c("added"), "_", x2)))))
-})
