@@ -1,6 +1,14 @@
+# crssrelease 0.1.1
+
+*Released May 11, 2020*
+
+## Bug fix
+
+- fixed bug in `rename_excel_files()` that was causing the wrong folder name to be inserted into the file names (#4)
+
 # crssrelease 0.1.0
 
-**Initial release 5/8/2020**
+*Initial release May 8, 2020*
 
 Five main functions for user: 
 

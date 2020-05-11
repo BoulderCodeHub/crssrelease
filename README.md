@@ -85,4 +85,5 @@ rename_excel_files(xlsx, c(dnf, st))
 
 ## Releases
 
+- v0.1.1 2020-05-11
 - v0.1.0 2020-05-08
