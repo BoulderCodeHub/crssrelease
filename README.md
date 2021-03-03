@@ -8,10 +8,16 @@ R interface to tools that help with the CRSS release process.
 
 ## Instalation
 
-crssrelease is only available on GitHub:
+crssrelease is only available on GitHub. Install the latest released version:
 
 ```{r}
 # install.packages("remotes")
+remotes::install_github("BoulderCodeHub/crssrelease", "v0.1.2")
+```
+
+Install the latest development version:
+
+```{r}
 remotes::install_github("BoulderCodeHub/crssrelease")
 ```
 
@@ -85,5 +91,6 @@ rename_excel_files(xlsx, c(dnf, st))
 
 ## Releases
 
+- v0.1.2 2021-03-03
 - v0.1.1 2020-05-11
 - v0.1.0 2020-05-08
