@@ -1,3 +1,9 @@
+# crssrelease 0.1.2
+
+*Released March 3, 2021*
+
+- fixed bug in `combine_rdfs()` that made it impossible to work from the command line (and thus RiverSMART), b/c it required a user to press enter. 
+
 # crssrelease 0.1.1
 
 *Released May 11, 2020*

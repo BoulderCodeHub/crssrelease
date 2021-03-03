@@ -14,7 +14,7 @@ rename_excel_files(files, ifolder, insert_name = NULL, sep = "-")
 \item{insert_name}{By default (if this is \code{NULL}), the top level folder name
 will be inserted into the current file name. If this parameter is
 specified, it will be used instead of the top level folder. If it is not
-\code{NULL}, it must be the same length as the number of files specified by
+\code{NULL}, it must be the same length as the number of folders specified in
 \code{ifolder}.}
 
 \item{sep}{The character used to seperate \code{insert_name} from the current file
