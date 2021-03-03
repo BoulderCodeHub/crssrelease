@@ -121,7 +121,10 @@ call_combiner_by_rdf <- function(rdf, fNames, batchDir, out_path)
   setwd(batchDir)
   on.exit(setwd(owd))
   message(paste('Starting RDF Combiner for',rdf,'...'))
-  comb_out <- system2('RiverWareBatchRdfCombiner.exe', stdout = TRUE, invisible = FALSE)
+  comb_out <- system2(
+    'RiverWareBatchRdfCombiner.exe',
+    stdout = TRUE, invisible = FALSE, input = "\n"
+  )
 
   # check that the file was created,
   # TODO: the output from the executable. Might provide more useful info.

@@ -1,7 +1,7 @@
 Package: crssrelease
 Type: Package
 Title: Tools to assist with the CRSS release process
-Version: 0.1.1
+Version: 0.1.2-1
 Authors@R: person("Alan", "Butler", ,"rabutler@usbr.gov", c("aut",
         "cre"))
 Description: Provides R interface to other tools (rdf combiner, rdf to
@@ -18,6 +18,6 @@ LazyData: true
 Imports: assertthat, tools, utils
 Roxygen: list(markdown = TRUE)
 Suggests: RWDataPlyr, testthat, covr
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 BinaryFiles: exec/RiverWareBatchRdfCombiner.exe,
         exec/RiverWareBatchRdfCombiner
